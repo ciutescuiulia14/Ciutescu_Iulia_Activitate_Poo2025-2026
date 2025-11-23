@@ -172,4 +172,5 @@ int main() {
 
 	Factura factura3("Client2", 3, new float[3] {250, 79, 500});
 	factura3 = factura1;//apelul operatorului =
+	 
 } 
