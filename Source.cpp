@@ -36,6 +36,17 @@ public:
 		delete[]valori;
 	}
 
+	//constructor de copiere
+	Factura(const Factura& factura) : id(++nrPozitii){
+		this->client = factura.client;
+		this->nrPozitii = factura.nrPozitii;
+		this->valori = new float[factura.nrPozitii];
+		for (int i = 0; i < factura.nrPozitii; i++) {
+			this->valori[i] = factura.valori[i];
+		}
+
+
+	}
 
 	const int getId() {
 		return this->id;
@@ -115,26 +126,30 @@ public:
 int Factura::nrFacturi = 0;
 
 int main() {
-	Factura f1;
-	cout << endl << " Noua valoare este: " << f1.getNrPozitii();
-	f1.afisareFactura();
+	//Factura f1;
+	//cout << endl << " Noua valoare este: " << f1.getNrPozitii();
+	//f1.afisareFactura();
 
-	Factura f2("Anonim", 3, new float[3] {300, 450, 50.2});
-	f2.afisareFactura();
-	f2.setValori(new float[3] {75, 130, 140}, 3);
-	
-	//vectori de valori
-	float* vectorValori = f2.getValori();
-	for (int i = 0; i < f2.getNrPozitii(); i++) {
-		cout << " " << vectorValori[i];
-	}
-	delete[]vectorValori;
+	//Factura f2("Anonim", 3, new float[3] {300, 450, 50.2});
+	//f2.afisareFactura();
+	//f2.setValori(new float[3] {75, 130, 140}, 3);
+	//
+	////vectori de valori
+	//float* vectorValori = f2.getValori();
+	//for (int i = 0; i < f2.getNrPozitii(); i++) {
+	//	cout << " " << vectorValori[i];
+	//}
+	//delete[]vectorValori;
 
 
 
-	//vector de pointeri
-	Factura** vectorFacturi = new Factura * [3];
-	for (int i = 0; i < 3; i++) {
-		vectorFacturi[i] = new Factura("Ionescu", i + 1, nullptr);
-	}
-}
+	////vector de pointeri
+	//Factura** vectorFacturi = new Factura * [3];
+	//for (int i = 0; i < 3; i++) {
+	////	vectorFacturi[i] = new Factura("Ionescu", i + 1, nullptr);
+	//} 
+
+	Factura factura1("Client", 3, new float[3] {200, 400, 57});
+	//apel constructor de copiere
+	Factura factura2 = factura1;
+} 
