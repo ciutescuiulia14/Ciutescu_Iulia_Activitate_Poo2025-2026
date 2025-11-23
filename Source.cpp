@@ -44,9 +44,26 @@ public:
 		for (int i = 0; i < factura.nrPozitii; i++) {
 			this->valori[i] = factura.valori[i];
 		}
+	}
 
+	//operatorul=
+	const Factura& operator=(const Factura& factura) {
+		if (this == &factura) {
+			return *this;
+			this->client = factura.client;
+			this->nrPozitii = factura.nrPozitii;
+			if (this->valori != nullptr) {
+				delete[]this->valori;
+			}
+			this->valori = new float[factura.nrPozitii];
+			for (int i = 0; i < factura.nrPozitii; i++) {
+				this->valori[i] = factura.valori[i];
+			}
+			return *this;
+		}
 
 	}
+
 
 	const int getId() {
 		return this->id;
@@ -151,5 +168,8 @@ int main() {
 
 	Factura factura1("Client", 3, new float[3] {200, 400, 57});
 	//apel constructor de copiere
-	Factura factura2 = factura1;
+	Factura factura2 = factura1; 
+
+	Factura factura3("Client2", 3, new float[3] {250, 79, 500});
+	factura3 = factura1;//apelul operatorului =
 } 
