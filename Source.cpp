@@ -121,6 +121,20 @@ int main() {
 
 	Factura f2("Anonim", 3, new float[3] {300, 450, 50.2});
 	f2.afisareFactura();
-	f2.setValori(new float[2] {75, 130}, 2);
+	f2.setValori(new float[3] {75, 130, 140}, 3);
 	
+	//vectori de valori
+	float* vectorValori = f2.getValori();
+	for (int i = 0; i < f2.getNrPozitii(); i++) {
+		cout << " " << vectorValori[i];
+	}
+	delete[]vectorValori;
+
+
+
+	//vector de pointeri
+	Factura** vectorFacturi = new Factura * [3];
+	for (int i = 0; i < 3; i++) {
+		vectorFacturi[i] = new Factura("Ionescu", i + 1, nullptr);
+	}
 }
