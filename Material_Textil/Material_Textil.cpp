@@ -157,6 +157,17 @@ public:
 		}
 	}
 
+	~MaterialTextil() {
+		if (this->denumire != nullptr) {
+			delete[] this->denumire;
+		}
+		if (this->cantitati != nullptr) {
+			delete[] this->cantitati;
+		}
+	}
+
+
+
 };
 
 int MaterialTextil::nrBaloturi = 0;
