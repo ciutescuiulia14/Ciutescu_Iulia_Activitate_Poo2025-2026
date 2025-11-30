@@ -40,6 +40,69 @@ public:
 		}
 	}
 
+	//metode de acces:getter si setter
+	int getIdBalot() {
+		return this->idBalot;
+	}
+
+	static int getNrBaloturi() {
+		return nrBaloturi;
+	}
+
+	void setNrBaloturi(int nrBaloturi) {
+		this->nrBaloturi = nrBaloturi;
+	}
+
+	void setGreutate(float greutate) {
+		if (greutate > 0) {
+			this->greutate = greutate;
+		}
+	}
+
+	float setGreutate() {
+		return this->greutate;
+	}
+
+	char* getDenumire() {
+		return this->denumire;
+	}
+
+	void setDenumire(const char* denumire) {
+		if (strlen(denumire) > 0) {
+			if (this->denumire != nullptr) {
+				delete[] this->denumire;
+			}
+			this->denumire = new char[strlen(denumire) + 1];
+			strcpy_s(this->denumire, strlen(denumire) + 1, denumire);
+		}
+	}
+
+	void setTip(string tip) {
+		if (tip.length() > 0) {
+			this->tip = tip;
+		}
+	}
+
+	void setCantitati(int nrCantitati, float* cantitati) {
+		if (nrCantitati > 0) {
+			this->nrCantitati = nrCantitati;
+			if (this->cantitati != nullptr) {
+				delete[] this->cantitati;
+			}
+			this->cantitati = new float[nrCantitati];
+			for (int i = 0; i < nrCantitati; i++) {
+				this->cantitati[i] = cantitati[i];
+			}
+		}
+	}
+
+	float* getCantitati() {
+		return this->cantitati;
+	}
+
+
+
+
 };
 
 int MaterialTextil::nrBaloturi = 0;
@@ -47,9 +110,9 @@ int MaterialTextil::nrBaloturi = 0;
 
 void main() {
 	float* vector = new float[4] { 1.5, 5.0, 2.7, 8.0};
-	MaterialTextil m1;
-
-
+	MaterialTextil m1("Ivory", "Catifea", 5, 6, 4, vector);
+	
+	
 	
 
 }
