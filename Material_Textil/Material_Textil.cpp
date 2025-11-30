@@ -215,7 +215,22 @@ public:
 		return this->greutate < mt.greutate;
 	}
 
+	//opertor +=
+	void operator+=(float valoareAdaugata) {
+		if (valoareAdaugata > 0) {
+			this->greutate += valoareAdaugata;
+		}
+	}
 
+	//operator negatie
+	bool operator!() {
+		return this->lunaLivrare != 0;
+	}
+
+	//operator functie
+	float operator() (int index) {
+		return this->getCantitateDeMaterial(index);
+	}
 };
 
 int MaterialTextil::nrBaloturi = 0;
@@ -224,6 +239,19 @@ int MaterialTextil::nrBaloturi = 0;
 void main() {
 	float* vector = new float[4] { 1.5, 5.0, 2.7, 8.0};
 	MaterialTextil m1("Ivory", "Catifea", 5, 6, 4, vector);
+
+	try {
+		cout << endl << " Cantitatea de material de la indexul 2 este: " << m1(2);
+	}
+	catch(int idx){
+		cout << endl << idx;
+	}
+	catch( const char* msg){
+		cout << endl << msg;
+	}
+	catch(...){
+		cout << endl << " Eroare ";
+	}
 	
 	cout << endl << " Id balot:  " << m1.getIdBalot();//apel constructor cu parametrii
 	
@@ -242,7 +270,19 @@ void main() {
 		cout << endl << " Materialul 2 nu este mai usor decat materialul 1 ";
 	}
 
+	m1 += 3.5;
+
+	if(!m1){
+		cout << endl << "Luna livrarii este 0 ";
+	}
+	else {
+		cout << endl << "Luna livrarii nu este 0 ";
+	}
+
 	m1.afisareMaterial();
+
+
+
 }
 
 
