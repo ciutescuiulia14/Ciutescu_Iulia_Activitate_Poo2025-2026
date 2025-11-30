@@ -3,7 +3,7 @@ using namespace std;
 
 
 class MaterialTextil {
-private: 
+private:
 	const int idBalot;
 	static int nrBaloturi;
 
@@ -40,6 +40,31 @@ public:
 		}
 	}
 
+	//constructorul de copiere
+	MaterialTextil(const MaterialTextil& material) : idBalot(++nrBaloturi) {
+		this->tip = material.tip;
+		this->greutate = material.greutate;
+		this->lunaLivrare = material.lunaLivrare;
+		this->nrCantitati = material.nrCantitati;
+		this->cantitati = new float[nrCantitati];
+		if (material.cantitati != nullptr) {
+			this->cantitati = new float[material.nrCantitati];
+			for (int i = 0; i < material.nrCantitati; i++) {
+				this->cantitati[i] = material.cantitati[i];
+			}
+		}
+		else {
+			this->cantitati = nullptr;
+		}
+		if (material.denumire != nullptr) {
+			this->denumire = new char[strlen(material.denumire) + 1];
+			strcpy_s(this->denumire, strlen(material.denumire) + 1, material.denumire);
+		}
+		else {
+			this->denumire = nullptr;
+		}
+	}
+	
 	//metode de acces:getter si setter
 	int getIdBalot() {
 		return this->idBalot;
@@ -99,8 +124,7 @@ public:
 	float* getCantitati() {
 		return this->cantitati;
 	}
-
-
+	
 
 
 };
@@ -112,12 +136,11 @@ void main() {
 	float* vector = new float[4] { 1.5, 5.0, 2.7, 8.0};
 	MaterialTextil m1("Ivory", "Catifea", 5, 6, 4, vector);
 	
+	cout << endl << " Id balot:  " << m1.getIdBalot();//apel constructor cu parametrii
 	
-	
-
+	MaterialTextil m2 = m1;
+	cout << endl << "Id balot : " << m2.getIdBalot();//apel constructor de copiere
 }
-
-
 
 
 
