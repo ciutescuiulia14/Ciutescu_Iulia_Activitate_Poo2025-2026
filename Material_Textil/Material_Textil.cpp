@@ -210,8 +210,10 @@ public:
 		}
 	}
 
-
-
+	//bool operator
+	bool operator<(const MaterialTextil& mt) {
+		return this->greutate < mt.greutate;
+	}
 
 
 };
@@ -230,6 +232,15 @@ void main() {
 	MaterialTextil m3;
 	m3 = m1;
 	cout << endl << "Id balot : " << m3.getIdBalot();//apel operator=
+
+	
+
+	if (m1 < m2) {
+		cout << endl << " Materialul 1 este mai usor decat materialul 2 ";
+	}
+	else {
+		cout << endl << " Materialul 2 nu este mai usor decat materialul 1 ";
+	}
 
 	m1.afisareMaterial();
 }
