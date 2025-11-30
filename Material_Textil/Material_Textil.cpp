@@ -124,8 +124,38 @@ public:
 	float* getCantitati() {
 		return this->cantitati;
 	}
-	
-
+	//operatorul =
+	void operator=(const MaterialTextil& material){
+		this->tip = material.tip;
+		this->greutate = material.greutate;
+		this->lunaLivrare = material.lunaLivrare;
+		this->nrCantitati = material.nrCantitati;
+		this->cantitati = new float[nrCantitati];
+		if (this->cantitati != nullptr) {
+			delete[]this->cantitati;
+			this->cantitati = nullptr;
+		}
+		if (material.cantitati != nullptr) {
+            this->cantitati = new float[material.nrCantitati];
+			for (int i = 0; i < material.nrCantitati; i++) {
+				this->cantitati[i] = material.cantitati[i];
+			}
+		}
+		else {
+			this->cantitati = nullptr;
+		}
+		if (this->denumire != nullptr) {
+			delete[]this->denumire;
+			this->denumire = nullptr;
+		}
+		if (material.denumire != nullptr) {
+			this->denumire = new char[strlen(material.denumire) + 1];
+			strcpy_s(this->denumire, strlen(material.denumire) + 1, material.denumire);
+		}
+		else {
+			this->denumire = nullptr;
+		}
+	}
 
 };
 
@@ -140,6 +170,9 @@ void main() {
 	
 	MaterialTextil m2 = m1;
 	cout << endl << "Id balot : " << m2.getIdBalot();//apel constructor de copiere
+	MaterialTextil m3;
+	m3 = m1;
+	cout << endl << "Id balot : " << m3.getIdBalot();//apel operator=
 }
 
 
