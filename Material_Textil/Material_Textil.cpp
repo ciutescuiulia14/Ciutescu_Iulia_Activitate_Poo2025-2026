@@ -84,12 +84,20 @@ public:
 		}
 	}
 
-	float setGreutate() {
+	float getGreutate() {
 		return this->greutate;
 	}
 
 	char* getDenumire() {
 		return this->denumire;
+	}
+
+	int getLunaLivrare() {
+		return this->lunaLivrare;
+	}
+
+	int getNrCantitati() {
+		return this->nrCantitati;
 	}
 
 	void setDenumire(const char* denumire) {
@@ -108,6 +116,10 @@ public:
 		}
 	}
 
+	string getTip() {
+		return this->tip;
+	}
+
 	void setCantitati(int nrCantitati, float* cantitati) {
 		if (nrCantitati > 0) {
 			this->nrCantitati = nrCantitati;
@@ -124,6 +136,16 @@ public:
 	float* getCantitati() {
 		return this->cantitati;
 	}
+
+	float getCantitateDeMaterial(int index) {
+		if (index >= 0 && index < this->nrCantitati) {
+			return this->cantitati[index];
+		}
+		else {
+			throw "Index invalid";
+		}
+	}
+
 	//operatorul =
 	void operator=(const MaterialTextil& material){
 		this->tip = material.tip;
@@ -157,6 +179,28 @@ public:
 		}
 	}
 
+	void afisareMaterial() {
+		cout << endl << this->getIdBalot() << ". Materialul ";
+		if(this->getDenumire()!= nullptr){
+			cout << this->getDenumire();
+		}
+		else {
+			cout << " Neidentificat ";
+		}
+		cout << ", este de tip " << this->getTip() << " cu greutatea  " << this->getGreutate() << " kg , a fost livrat in luna a  " << this->getLunaLivrare() << " -a. Este inregistrat cu " << this->getNrCantitati() << " cantitati: ";
+		if(this->getNrCantitati() >0){
+			cout << " Cantitatile sunt : ";
+			for (int i = 0; i < this->getNrCantitati()  -1; i++) {
+				cout << " " << this->getCantitateDeMaterial(i) << ",";
+			}
+			cout << this->getCantitateDeMaterial(this->getNrCantitati() - 1) << ".";
+		}
+	}
+
+
+
+
+
 	~MaterialTextil() {
 		if (this->denumire != nullptr) {
 			delete[] this->denumire;
@@ -165,6 +209,8 @@ public:
 			delete[] this->cantitati;
 		}
 	}
+
+
 
 
 
@@ -184,6 +230,8 @@ void main() {
 	MaterialTextil m3;
 	m3 = m1;
 	cout << endl << "Id balot : " << m3.getIdBalot();//apel operator=
+
+	m1.afisareMaterial();
 }
 
 
