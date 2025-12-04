@@ -239,8 +239,10 @@ public:
 		return this->ziExpirare != 0;
 	}
 
-
-
+	//operator functie
+	float operator()(int index) {
+		return this->getGramajDupaIndex(index);
+	}
 
 };
 int Medicament::nrMedicamente = 0;
@@ -249,6 +251,23 @@ int main() {
 		
 		float* vectorGramaje = new float[3] { 250.0, 500.0, 1000.0 };
 		Medicament m1("Paracetamol", "analgezice", 12.5, 30, 3, vectorGramaje);
+		try {
+			cout << endl << "Gramajul de la indexul 2 este: " << m1(2);
+		}
+		catch (int idx) {
+			cout << endl << idx;
+		}
+		catch(const char* msg){
+
+		}
+		catch (...) {
+			cout << endl<< " Eroare";
+		}
+		
+		
+		
+		
+		
 		//apel constructor cu parametrii
 		cout << endl << "Id medicament : " << m1.getIdMedicament();
 		//apel constructor de copiere
