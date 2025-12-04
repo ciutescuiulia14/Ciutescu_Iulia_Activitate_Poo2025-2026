@@ -146,6 +146,40 @@ public:
 	float* getGramaje() {
 		return this->gramaje;
 	}
+
+	//operatorul =
+	void operator=(const Medicament& m){
+		this->categorie = m.categorie;
+		this->pret = m.pret;
+		this->ziExpirare = m.ziExpirare;
+		this->nrGramaje = m.nrMedicamente;
+		this->gramaje = new float[m.nrGramaje];
+		if (this->gramaje != nullptr) {
+			delete[] this->gramaje;
+			this->gramaje = gramaje;
+		}
+		if (m.gramaje != nullptr){
+			this->gramaje = new float[m.nrGramaje];
+			for (int i = 0; i < m.nrGramaje; i++) {
+				this->gramaje[i] = m.gramaje[i];
+			}
+		}
+		else {
+			this->gramaje = nullptr;
+		}
+		if (this->denumire = nullptr) {
+			delete[] this->denumire;
+			this->denumire = nullptr;
+		}
+		if (m.denumire != nullptr) {
+			this->denumire = new char[strlen(m.denumire) + 1];
+			strcpy_s(this->denumire, strlen(m.denumire) + 1, m.denumire);
+		}
+		else {
+			this->denumire = nullptr;
+		}
+	}
+
 	   
 };
 int Medicament::nrMedicamente = 0;
@@ -159,7 +193,10 @@ int main() {
 		//apel constructor de copiere
 		Medicament m2 = m1;
 		cout << endl << "Id medicament :" << m2.getIdMedicament();
-
+		Medicament m3;
+		//apel oprator=
+		m3 = m1;
+		cout << endl << "Id medicament: " << m3.getIdMedicament();
 
 
 }
