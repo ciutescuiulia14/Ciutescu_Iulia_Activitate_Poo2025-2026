@@ -157,8 +157,6 @@ public:
 
 	}
 
-
-
 	//operatorul =
 	void operator=(const Medicament& m){
 		this->categorie = m.categorie;
@@ -224,6 +222,16 @@ public:
 		}
 	}
 		
+	//bool operator
+	bool operator <(const Medicament& md) {
+		return this->gramaje[0] < md.gramaje[0];
+	}
+
+
+
+
+
+
 };
 int Medicament::nrMedicamente = 0;
 
@@ -241,5 +249,16 @@ int main() {
 		m3 = m1;
 		cout << endl << "Id medicament: " << m3.getIdMedicament();
 
+		if (m1 < m2) {
+			cout << endl << "Medicamentul 1 are gramajul mai mic decat medicamentul 2";
+		}
+		else {
+			cout << endl << "Medicamentul 2 are gramajul mai mic decat medicamentul 1";
+		}
+
+
+
+
+		//apel afisare
 		m1.afisareMedicament();
 }
