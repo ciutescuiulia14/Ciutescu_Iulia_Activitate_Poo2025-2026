@@ -227,7 +227,12 @@ public:
 		return this->gramaje[0] < md.gramaje[0];
 	}
 
-
+	//opetaror +=
+	void operator+=(float valoareAdaugata) {
+		if (valoareAdaugata > 0) {
+			this->pret += valoareAdaugata;
+		}
+	}
 
 
 
@@ -249,6 +254,8 @@ int main() {
 		m3 = m1;
 		cout << endl << "Id medicament: " << m3.getIdMedicament();
 
+
+		//bool operator
 		if (m1 < m2) {
 			cout << endl << "Medicamentul 1 are gramajul mai mic decat medicamentul 2";
 		}
@@ -256,7 +263,9 @@ int main() {
 			cout << endl << "Medicamentul 2 are gramajul mai mic decat medicamentul 1";
 		}
 
-
+		//op +=
+		m1 += 5.0;
+		cout << endl << "Noul pret al medicamentului 1 este: " << m1.getPret();
 
 
 		//apel afisare
