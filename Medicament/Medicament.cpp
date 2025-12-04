@@ -179,7 +179,12 @@ public:
 			this->denumire = nullptr;
 		}
 	}
-
+	//destructorul
+	~Medicament() {
+		if (this->denumire != nullptr) {
+			delete[]this->denumire;
+		}
+	}
 	   
 };
 int Medicament::nrMedicamente = 0;
