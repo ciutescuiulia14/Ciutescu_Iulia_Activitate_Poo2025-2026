@@ -146,7 +146,7 @@ public:
 	float* getGramaje() {
 		return this->gramaje;
 	}
-
+	   
 };
 int Medicament::nrMedicamente = 0;
 
@@ -159,6 +159,7 @@ int main() {
 		//apel constructor de copiere
 		Medicament m2 = m1;
 		cout << endl << "Id medicament :" << m2.getIdMedicament();
+
 
 
 }
