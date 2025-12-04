@@ -227,11 +227,16 @@ public:
 		return this->gramaje[0] < md.gramaje[0];
 	}
 
-	//opetaror +=
+	//operator +=
 	void operator+=(float valoareAdaugata) {
 		if (valoareAdaugata > 0) {
 			this->pret += valoareAdaugata;
 		}
+	}
+
+	//operator negatie
+	bool operator!() {
+		return this->ziExpirare != 0;
 	}
 
 
@@ -266,6 +271,14 @@ int main() {
 		//op +=
 		m1 += 5.0;
 		cout << endl << "Noul pret al medicamentului 1 este: " << m1.getPret();
+
+		//operator negatie
+		if (!m1) {
+			cout << endl << "Medicamentul nu este expirat";
+		}
+		else {
+			cout << endl << "Medicamentul  este expirat";
+		}
 
 
 		//apel afisare
