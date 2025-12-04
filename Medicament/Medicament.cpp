@@ -55,12 +55,30 @@ public:
 			this->gramaje = nullptr;
 		}
 	}
-
-
-
-
-
-
+	//constructorul de copiere
+	Medicament(const Medicament& m) : idMedicament(++nrMedicamente) {
+		this->categorie = m.categorie;
+		this->pret = m.pret;
+		this->ziExpirare = m.ziExpirare;
+		this->nrGramaje = m.nrMedicamente;
+		this->gramaje = new float[m.nrGramaje];
+		if (m.gramaje != nullptr) {
+			this->gramaje = new float[m.nrGramaje];
+			for (int i = 0; i < m.nrGramaje; i++) {
+				this->gramaje[i] = m.gramaje[i];
+			}
+		}
+		else {
+			this->gramaje = nullptr;
+		}
+		if (m.denumire != nullptr) {
+			this->denumire = new char[strlen(m.denumire) + 1];
+			strcpy_s(this->denumire, strlen(m.denumire) + 1, m.denumire);
+		}
+		else {
+			this->denumire = nullptr;
+		}
+	}
 
 };
 int Medicament::nrMedicamente = 0;
