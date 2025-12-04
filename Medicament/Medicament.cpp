@@ -21,7 +21,7 @@ private:
 public:
 	//constructor implicit
 	Medicament() :idMedicament(nrMedicamente++) {
-		
+
 		this->categorie = "neidentificata";
 		this->pret = 0;
 		this->ziExpirare = 1;
@@ -79,13 +79,86 @@ public:
 			this->denumire = nullptr;
 		}
 	}
+	//gettri + setteri
+
+	int getIdMedicament() {
+		return this->idMedicament;
+	}
+
+	static int getNrMedicamente() {
+		return nrMedicamente;
+	}
+
+	void setNrGaramaje(int nrGramaje) {
+		this->nrGramaje = nrGramaje;
+	}
+
+	void setPret(float pret) {
+	}
+
+	float getPret() {
+		return this->pret;
+	}
+
+	char* getDenumire() {
+		return this->denumire;
+	}
+
+	int getZiExpirare() {
+		return this->ziExpirare;
+	}
+
+	int getNrGramaje() {
+		return this->nrGramaje;
+	}
+
+	void setDenumire(const char* denumire) {
+		if (strlen(denumire) > 0) {
+			if (this->denumire != nullptr) {
+				delete[] this->denumire;
+			}
+			this->denumire = new char[strlen(denumire) + 1];
+			strcpy_s(this->denumire, strlen(denumire) + 1, denumire);
+		}
+	}
+
+	void setCagorie(string categorie) {
+		this->categorie = categorie;
+	}
+
+	string getCategorie() {
+		return this->categorie;
+	}
+
+	void setGramaje(int nrGramaje, float* gramaje) {
+		if (nrGramaje > 0) {
+		this->nrGramaje = nrGramaje;
+		if (this->gramaje != nullptr) {
+			delete[]this->gramaje;
+		}
+		this->gramaje = new float[nrGramaje];
+		for (int i = 0; i < nrGramaje; i++) {
+			this->gramaje[i] = gramaje[i];
+		}
+	}
+}
+
+	float* getGramaje() {
+		return this->gramaje;
+	}
 
 };
 int Medicament::nrMedicamente = 0;
 
 int main() {
-		//Medicament m1;
-		float* vectorGramaje = new float[3] { 250.0, 500.0, 1000.0 };
-		Medicament m2("Paracetamol", "analgezic", 12.5, 30, 3, vectorGramaje);
 		
+		float* vectorGramaje = new float[3] { 250.0, 500.0, 1000.0 };
+		Medicament m1("Paracetamol", "analgezic", 12.5, 30, 3, vectorGramaje);
+		//apel constructor cu parametrii
+		cout << endl << "Id medicament : " << m1.getIdMedicament();
+		//apel constructor de copiere
+		Medicament m2 = m1;
+		cout << endl << "Id medicament :" << m2.getIdMedicament();
+
+
 }
