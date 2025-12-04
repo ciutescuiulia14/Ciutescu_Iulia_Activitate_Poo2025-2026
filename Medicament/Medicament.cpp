@@ -147,6 +147,18 @@ public:
 		return this->gramaje;
 	}
 
+	float getGramajDupaIndex(int index) {
+		if(index >=0 && index < this->nrGramaje){
+			return this->gramaje[index];
+		}
+		else {
+			throw"index invalid";
+		}
+
+	}
+
+
+
 	//operatorul =
 	void operator=(const Medicament& m){
 		this->categorie = m.categorie;
@@ -179,20 +191,46 @@ public:
 			this->denumire = nullptr;
 		}
 	}
+	
+	  
+
+	//functia de afisare
+	void afisareMedicament() {
+		cout << endl << this->getIdMedicament() << ". Medicamentul ";
+		if (this->getDenumire() != nullptr) {
+			cout << this->getDenumire();
+		}
+		else {
+			cout << " neindentificat";
+		}
+		cout << " , face parte din categoria  " << this->getCategorie() << " avand pretul de:  "
+			<< this->getPret() << " , cu ziua expirarii: " << this->getZiExpirare() << " . Este inregistrat in baza de date cu  " << this->getNrGramaje() << " variante de gramaj .";
+					if (this->getNrGramaje() > 0) {
+			cout << "Gramajele disponibile sunt: ";
+			for (int i = 0; i < this->getNrGramaje(); i++) {
+				cout << " " << this->getGramajDupaIndex(i) << ", ";
+			}
+			cout << this->getGramajDupaIndex(this->getNrGramaje() - 1) << ".";
+		}
+
+	}
+
+
+
 	//destructorul
 	~Medicament() {
 		if (this->denumire != nullptr) {
 			delete[]this->denumire;
 		}
 	}
-	   
+		
 };
 int Medicament::nrMedicamente = 0;
 
 int main() {
 		
 		float* vectorGramaje = new float[3] { 250.0, 500.0, 1000.0 };
-		Medicament m1("Paracetamol", "analgezic", 12.5, 30, 3, vectorGramaje);
+		Medicament m1("Paracetamol", "analgezice", 12.5, 30, 3, vectorGramaje);
 		//apel constructor cu parametrii
 		cout << endl << "Id medicament : " << m1.getIdMedicament();
 		//apel constructor de copiere
@@ -203,5 +241,5 @@ int main() {
 		m3 = m1;
 		cout << endl << "Id medicament: " << m3.getIdMedicament();
 
-
+		m1.afisareMedicament();
 }
