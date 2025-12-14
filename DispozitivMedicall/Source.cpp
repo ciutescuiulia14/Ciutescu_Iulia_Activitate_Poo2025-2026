@@ -82,9 +82,45 @@ public:
 		}
 	}
 
-
+	//constructor implicit
+	DispozitivMedical() : idDispozitiv(++nrDispozitive) {
+		this->nume = nullptr;
+		this->tip = "neidentificat";
+		this->pret = 0;
+		this->luniGarantie = 0;
+		this->dimensiuni = nullptr;
+	}
+	//constructor cu toti parametrii
+	DispozitivMedical(const char* nume, string tip, float pret, int luniGarantie, int nrDimensiuni, const float* dimensiuni) : idDispozitiv(++nrDispozitive) {
+		if (nume != nullptr) {
+			this->nume = new char[strlen(nume) + 1];
+			strcpy_s(this->nume, strlen(nume) + 1, nume);
+		}
+		else {
+			this->nume = nullptr;
+		}
+		this->tip = tip;
+		this->pret = pret;
+		this->luniGarantie = luniGarantie;
+		if (nrDimensiuni > 0 && dimensiuni != nullptr) {
+			this->nrDimensiuni = nrDimensiuni;
+			this->dimensiuni = new float[nrDimensiuni];
+			for (int i = 0; i < nrDimensiuni; i++) {
+				this->dimensiuni[i] = dimensiuni[i];
+			}
+		}
+		else
+		{
+			this->nrDimensiuni = 0;
+			this->dimensiuni = nullptr;
+		}
+	}
+	
 
 };
+
+
+int DispozitivMedical::nrDispozitive = 0;
 
 
 
