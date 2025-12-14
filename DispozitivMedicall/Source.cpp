@@ -115,8 +115,42 @@ public:
 			this->dimensiuni = nullptr;
 		}
 	}
-	
+	//constructor de copiere
+	DispozitivMedical(const DispozitivMedical& d) : idDispozitiv(++nrDispozitive) {
+		if (d.nume != nullptr) {
+			this->nume = new char[strlen(d.nume) + 1];
+			strcpy_s(this->nume, strlen(d.nume) + 1, d.nume);
+		}
+		else {
+			this->nume = nullptr;
+		}
+		this->tip = d.tip;
+		this->pret = d.pret;
+		this->luniGarantie = d.luniGarantie;
+		this->nrDimensiuni = d.nrDimensiuni;
+		if (d.dimensiuni != nullptr && d.dimensiuni > 0) {
+			
+			this->dimensiuni = new float[d.nrDimensiuni];
+			for (int i = 0; i < d.nrDimensiuni; i++) {
+				this->dimensiuni[i] = d.dimensiuni[i];
+			}
+		}
+		else
+		{
+			this->dimensiuni = nullptr;
+			this->nrDimensiuni = 0;
+		}
 
+	}
+//destructor
+	~DispozitivMedical() {
+		if (this->nume!=nullptr) {
+			delete[]this->nume;
+		}
+		if (this->dimensiuni != nullptr) {
+			delete[]this->dimensiuni;
+		}
+	}
 };
 
 
@@ -131,5 +165,11 @@ int DispozitivMedical::nrDispozitive = 0;
 
 
 int main() {
+	float disp1[] = { 8.5, 10.0, 12.0 };
+	DispozitivMedical d1("Tensiometru", "monitorizare", 199.9, 24, 3, disp1);
+	DispozitivMedical d2 = d1;
+	DispozitivMedical d3;
+
+
 
 }
